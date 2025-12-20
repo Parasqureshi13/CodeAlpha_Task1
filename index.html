@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeAlpha - Calculator Task - ParasQureshi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a3a, #2c3e50);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            color: #C5D89D;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            color: #9CAB84;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .calculator {
+            background: #C5D89D;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .calculator form input {
+            border: 0;
+            outline: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: #5A7863;
+            cursor: pointer;
+            margin: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .calculator form input:hover {
+            transform: translateY(-3px);
+            box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.3), 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .calculator form input:active {
+            transform: translateY(1px);
+            box-shadow: -2px -2px 10px rgba(255, 255, 255, 0.1), 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form .display {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0;
+            background-color: #9CAB84;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form .display input {
+            text-align: right;
+            flex: 1;
+            font-size: 45px;
+            box-shadow: none;
+            background: transparent;
+            color: #2c3e50;
+            margin: 0;
+            height: auto;
+            padding: 10px;
+        }
+
+        form input.equal {
+            width: 145px;
+            background-color: #5A7863;
+            color: #fff;
+        }
+
+        form input.operators {
+            color: #5A7863;
+            background-color: #e8f5e9;
+        }
+
+        form input.equal:hover {
+            background-color: #4a6a53;
+        }
+
+        .calculator-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .instructions {
+            background-color: rgba(197, 216, 157, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 25px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(197, 216, 157, 0.3);
+        }
+
+        .instructions h3 {
+            color: #C5D89D;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .instructions p {
+            color: #9CAB84;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .instructions ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .instructions li {
+            color: #9CAB84;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #9CAB84;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .footer-heading {
+            color: #C5D89D;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .calculator {
+                padding: 20px;
+            }
+
+            .calculator form input {
+                width: 55px;
+                height: 55px;
+                font-size: 18px;
+                margin: 6px;
+            }
+
+            form .display input {
+                font-size: 35px;
+            }
+
+            form input.equal {
+                width: 125px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .calculator form input {
+                width: 50px;
+                height: 50px;
+                font-size: 16px;
+                margin: 5px;
+            }
+
+            form .display input {
+                font-size: 30px;
+            }
+
+            form input.equal {
+                width: 115px;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Animation for display */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .display input {
+            animation: fadeIn 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1><i class="fas fa-calculator"></i> CodeAlpha Calculator</h1>
+    </div>
+
+    <div class="container">
+        <div class="calculator">
+            <form>
+                <div class="display">
+                    <input type="text" name="display" id="display" readonly placeholder="0">
+                </div>
+                <div class="calculator-row">
+                    <input type="button" value="AC" onclick="clearDisplay()" class="operators" title="All Clear">
+                    <input type="button" value="DE" onclick="deleteLast()" class="operators"
+                        title="Delete Last Character">
+                    <input type="button" value="." onclick="appendToDisplay('.')" class="operators">
+                    <input type="button" value="/" onclick="appendToDisplay('/')" class="operators">
+                </div>
+                <div class="calculator-row">
+                    <input type="button" value="7" onclick="appendToDisplay('7')">
+                    <input type="button" value="8" onclick="appendToDisplay('8')">
+                    <input type="button" value="9" onclick="appendToDisplay('9')">
+                    <input type="button" value="*" onclick="appendToDisplay('*')" class="operators">
+                </div>
+                <div class="calculator-row">
+                    <input type="button" value="4" onclick="appendToDisplay('4')">
+                    <input type="button" value="5" onclick="appendToDisplay('5')">
+                    <input type="button" value="6" onclick="appendToDisplay('6')">
+                    <input type="button" value="-" onclick="appendToDisplay('-')" class="operators">
+                </div>
+                <div class="calculator-row">
+                    <input type="button" value="1" onclick="appendToDisplay('1')">
+                    <input type="button" value="2" onclick="appendToDisplay('2')">
+                    <input type="button" value="3" onclick="appendToDisplay('3')">
+                    <input type="button" value="+" onclick="appendToDisplay('+')" class="operators">
+                </div>
+                <div class="calculator-row">
+                    <input type="button" value="00" onclick="appendToDisplay('00')">
+                    <input type="button" value="0" onclick="appendToDisplay('0')">
+                    <input type="button" value="=" onclick="calculateResult()" class="equal operators">
+                </div>
+            </form>
+        </div>
+
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> How to Use</h3>
+            <p>This calculator supports basic arithmetic operations:</p>
+            <ul>
+                <li>Click numbers and operators to build your expression</li>
+                <li><strong>AC</strong>: Clear the entire display</li>
+                <li><strong>DE</strong>: Delete the last character</li>
+                <li><strong>=</strong>: Calculate the result</li>
+                <li>You can also use your keyboard to input numbers and operators</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-heading">CodeAlpha Internship Task - Calculator Application</div>
+        <div>Developed by Paras Qureshi</div>
+    </div>
+
+    <script>
+        // Get the display element
+        const display = document.getElementById('display');
+
+        // Function to append value to display
+        function appendToDisplay(value) {
+            // If display shows "Error" or "0", replace it with new value
+            if (display.value === '0' || display.value === 'Error' || display.value === 'Infinity') {
+                display.value = value;
+            } else {
+                display.value += value;
+            }
+
+            // Add animation effect
+            display.style.animation = 'none';
+            setTimeout(() => {
+                display.style.animation = 'fadeIn 0.3s ease';
+            }, 10);
+        }
+
+        // Function to clear the display
+        function clearDisplay() {
+            display.value = '0';
+        }
+
+        // Function to delete the last character
+        function deleteLast() {
+            if (display.value.length > 1) {
+                display.value = display.value.slice(0, -1);
+            } else {
+                display.value = '0';
+            }
+        }
+
+        // Function to calculate the result
+        function calculateResult() {
+            try {
+                // Replace '×' with '*' and '÷' with '/' for eval
+                let expression = display.value.replace(/×/g, '*').replace(/÷/g, '/');
+
+                // Validate expression
+                if (expression.trim() === '') {
+                    display.value = '0';
+                    return;
+                }
+
+                // Evaluate the expression
+                let result = eval(expression);
+
+                // Check if result is a valid number
+                if (isNaN(result) || !isFinite(result)) {
+                    display.value = 'Error';
+                } else {
+                    // Round to 10 decimal places to avoid floating point issues
+                    result = Math.round(result * 10000000000) / 10000000000;
+                    display.value = result;
+                }
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function (event) {
+            const key = event.key;
+
+            // Numbers
+            if (key >= '0' && key <= '9') {
+                appendToDisplay(key);
+            }
+
+            // Operators
+            else if (['+', '-', '*', '/', '.'].includes(key)) {
+                appendToDisplay(key);
+            }
+
+            // Enter or = for calculation
+            else if (key === 'Enter' || key === '=') {
+                event.preventDefault();
+                calculateResult();
+            }
+
+            // Escape for clear
+            else if (key === 'Escape') {
+                clearDisplay();
+            }
+
+            // Backspace for delete
+            else if (key === 'Backspace') {
+                event.preventDefault();
+                deleteLast();
+            }
+        });
+
+        // Initialize display with 0
+        clearDisplay();
+    </script>
+</body>
+
+</html>
