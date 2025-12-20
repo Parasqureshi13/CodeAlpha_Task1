@@ -2,7 +2,8 @@ Responsive Calculator
 
 A fully responsive calculator built using HTML, CSS, and JavaScript. It works perfectly on desktop, tablet, and mobile devices and supports basic arithmetic operations like addition, subtraction, multiplication, and division.
 
-Demo
+Demo link 
+(https://parasqureshi13.github.io/CodeAlpha_Task1/)
 
 You can open the index.html file in any browser to see it in action.
 
